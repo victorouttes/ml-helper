@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.svm import SVC
+from sklearn import preprocessing
 from sklearn.neural_network import MLPClassifier
 
 from ml_helper.classifier import ClassifierExperiment
@@ -15,15 +15,10 @@ dataset.columns = [
 
 ClassifierExperiment(
     experiment_name='ML HELPER',
-    tags={'project': 'Testes da lib ml-helper', 'team': 'SOM', 'dataset': 'iris', 'algorithm': 'SVC'},
-    sk_model_class=SVC,
     dataset=dataset,
-    decision_function_shape='ovr'
-).run()
-
-ClassifierExperiment(
-    experiment_name='ML HELPER',
     tags={'project': 'Testes da lib ml-helper', 'team': 'SOM', 'dataset': 'iris', 'algorithm': 'MLPClassifier'},
     sk_model_class=MLPClassifier,
-    dataset=dataset,
+    sk_preprocessing=[
+        preprocessing.StandardScaler,
+    ],
 ).run()
